@@ -1,5 +1,12 @@
 import os, fnmatch
 
+def isGetString(string):
+	words = ["Пинск", "свободно", "д.к.", "дк", "Дк", "Д.К.", "безнал", "б/н", "17р", "ребенок", "width=\"25px\"", "selected=\"\">Поехал"]
+	for word in words:
+		if word in string: return True
+	return False
+	
+	
 def getReportData():
 	while(True):
 		reportDataFile = "/home/valentin/python_dev/report/reportTest/" + input("Название файла отчёта(.txt): ") + ".txt"
@@ -8,7 +15,8 @@ def getReportData():
 				data = file.readlines()
 				reportData = []
 				for string in data:
-					reportData.append(string.strip())
+					if isGetString(string):
+						reportData.append(string.strip())
 				return reportData
 		except FileNotFoundError:
 			answer = input("Ошибка. Попробовать ещё раз (y/n)? ")
