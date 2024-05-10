@@ -8,3 +8,10 @@ def newDirReport(string):
 	string = string[16:len(string)-5]
 	words = string.split(", ")
 	return directReport(words[2], convertDate(words[0]), words[1])
+
+def isGetString(string):
+	words = ["Пинск", "свободно", "д.к.", "дк", "Дк", "Д.К.", "безнал", "б/н", "17р", "ребенок", "width=\"25px\"", "selected=\"\">Поехал"]
+	for word in words:
+		if word in string: return True
+	return False
+

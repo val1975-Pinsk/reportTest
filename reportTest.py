@@ -1,11 +1,6 @@
 import os, fnmatch
 from reportClass import *
-
-def isGetString(string):
-	words = ["Пинск", "свободно", "д.к.", "дк", "Дк", "Д.К.", "безнал", "б/н", "17р", "ребенок", "width=\"25px\"", "selected=\"\">Поехал"]
-	for word in words:
-		if word in string: return True
-	return False
+from reportLib import *
 	
 	
 def getReportData():
