@@ -1,3 +1,5 @@
+from reportClass import *
+
 def convertDate(date):
 	month = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"]
 	subDate = date.split("-")
@@ -15,7 +17,13 @@ def sringIsHeader(string):
 		return True
 	else: return False
 
+
+def stringIsSubHeader(string):
+	if "свободно" in string:
+		return True
+	else: return False
 	
+		
 def isGetString(string):
 	words = ["Пинск", "свободно", "д.к.", "дк", "Дк", "Д.К.", "безнал", "б/н", "17р", "ребенок", "width=\"25px\"", "selected=\"\">Поехал"]
 	for word in words:
