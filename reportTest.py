@@ -2,6 +2,7 @@ import os, fnmatch
 from reportClass import *
 from reportLib import *
 	
+report = Report()
 	
 def getReportData():
 	while(True):
@@ -27,13 +28,20 @@ pattern = "*.txt"
 for entry in listOfFiles:
 	if fnmatch.fnmatch(entry, pattern):
 		print(entry)
+
 reportData = getReportData()
 if reportData == "finish":
-	print("Работа программы закончена.")
+	print("Работа программы закончена.")	
 else:
 	#	Составление отчёта.
 	report = []
 	for string in reportData:
 		if sringIsHeader(string):
 			dirReport = newDirReport(string)
-			dirReport.display()
+			report.append(dirReport)
+#			dirReport.display()
+		elif stringIsSubHeader(string):
+			dirReport.setSubHeader(string)
+
+for report_ in report:
+	report_.display()
