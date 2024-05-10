@@ -13,7 +13,9 @@ def getReportData():
 				reportData = []
 				for string in data:
 					if isGetString(string):
-						reportData.append(string.strip())
+						string = string.strip()
+						string = string[:len(string)-5]
+						reportData.append(string)
 				return reportData
 		except FileNotFoundError:
 			answer = input("Ошибка. Попробовать ещё раз (y/n)? ")
@@ -42,6 +44,12 @@ else:
 #			dirReport.display()
 		elif stringIsSubHeader(string):
 			dirReport.setSubHeader(string)
+		elif stringIsRecervedCount(string):
+			passenger = Passenger()
+			passenger.recerved = getRecervCntValFromStr(string)
+		elif stringIsRemark(string):
+			passenger.remark = getRemarkFromString(string)
+			print(f"Заказано мест: {passenger.recerved}\nПояснения: {passenger.remark}")
 
 for report_ in report:
 	report_.display()
