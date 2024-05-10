@@ -1,3 +1,10 @@
+class Passenger:
+	def __init__(self):
+		self.recerved = 0
+		self.fulfilled = False
+		self.remark = "undefined"
+
+
 class Report:
 	def __init__(self):
 		self.body = []
@@ -11,6 +18,7 @@ class directReport:
 		self.auto = "undefined"
 		self.occupied = 0
 		self.freely = 0
+		self.passengers = []
 		self.fullyPrice = Payment(35)
 		self.discounted = Payment(30)
 		self.halfTheCost = Payment(17)
@@ -18,12 +26,13 @@ class directReport:
 	def display(self):
 		print(f"Направление: {self.direction}\nДата: {self.date}\nВремя отправления: {self.time}")
 		print(f"Занято мест: {self.occupied}\nСвободных мест: {self.freely}\nАвтомобиль: {self.auto}")
+		print("===============================================\n")
 
 	def setSubHeader(self, string):
 		string = string[16:len(string)-5]
 		words = string.split(", ")
-		self.occupied = words[0][:len(words[0])-2]
-		self.freely = words[1][:len(words[0])-12]
+		self.occupied = int(words[0][:len(words[0])-2])
+		self.freely = int(words[1][:len(words[0])-12])
 		self.auto = words[2]
 		
 class Payment:
