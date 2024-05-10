@@ -7,7 +7,8 @@ def convertDate(date):
 	
 	
 def newDirReport(string):
-	string = string[16:len(string)-5]
+	#string = string[16:len(string)-5]
+	string = string[16:]
 	words = string.split(", ")
 	return directReport(words[2], convertDate(words[0]), words[1])
 
@@ -23,6 +24,28 @@ def stringIsSubHeader(string):
 		return True
 	else: return False
 	
+
+def stringIsRecervedCount(string):
+	if "width=\"25px\"" in string :
+		return True
+	else: return False
+
+
+def getRecervCntValFromStr(string):
+	return int(string[17:])
+
+
+def getRemarkFromString(string):
+	return string[16:]
+
+
+def stringIsRemark(string):
+	if not "colspan=\"5\"" in string: return False
+	else:
+		if not "</tr>" in string: return True
+		elif not "Пинск" in string: return True
+		elif not "свободно" in string: return True
+
 		
 def isGetString(string):
 	words = ["Пинск", "свободно", "д.к.", "дк", "Дк", "Д.К.", "безнал", "б/н", "17р", "ребенок", "width=\"25px\"", "selected=\"\">Поехал"]
