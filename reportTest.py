@@ -18,14 +18,6 @@ def getReportData():
 			answer = input("Ошибка. Попробовать ещё раз (y/n)? ")
 			if answer == "n" or answer == "н":
 				return "finish"
-
-
-def sringIsHeader(string):
-	if "Пинск" in string:
-		return True
-	else: return False
-
-	
 '''
 	Получаем список файлов в текущем директории.
 Выбираем файлы с расширением *.txt.

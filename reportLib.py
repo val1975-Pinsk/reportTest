@@ -9,6 +9,13 @@ def newDirReport(string):
 	words = string.split(", ")
 	return directReport(words[2], convertDate(words[0]), words[1])
 
+
+def sringIsHeader(string):
+	if "Пинск" in string:
+		return True
+	else: return False
+
+	
 def isGetString(string):
 	words = ["Пинск", "свободно", "д.к.", "дк", "Дк", "Д.К.", "безнал", "б/н", "17р", "ребенок", "width=\"25px\"", "selected=\"\">Поехал"]
 	for word in words:
