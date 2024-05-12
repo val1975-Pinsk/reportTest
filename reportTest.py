@@ -38,18 +38,26 @@ else:
 	#	Составление отчёта.
 	report = []
 	for string in reportData:
+		#	Определение содержания строки
 		if sringIsHeader(string):
+		#	Заголовочная строка.
 			dirReport = newDirReport(string)
 			report.append(dirReport)
-#			dirReport.display()
 		elif stringIsSubHeader(string):
+		#	Вторая часть заголовка.
 			dirReport.setSubHeader(string)
 		elif stringIsRecervedCount(string):
+		#	Количество заказаных мест.
 			passenger = Passenger()
 			passenger.recerved = getRecervCntValFromStr(string)
+		elif stringIsFulfilledStatus(string):
+		#	Статус заказа.
+			passenger.fulfilled = getFulfilledStatus(string)
 		elif stringIsRemark(string):
+		#	Пояснения к заказу.
 			passenger.remark = getRemarkFromString(string)
-			print(f"Заказано мест: {passenger.recerved}\nПояснения: {passenger.remark}")
+			
+			#print(f"Заказано мест: {passenger.recerved}\nПояснения: {passenger.remark}")
 
 for report_ in report:
 	report_.display()
