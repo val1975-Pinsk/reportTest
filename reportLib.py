@@ -40,15 +40,15 @@ def getRemarkFromString(string):
 
 
 def stringIsRemark(string):
-	if not "colspan=\"5\"" in string: return False
-	else:
+	if "<td colspan=\"5\">" in string:
 		if not "</tr>" in string: return True
 		elif not "Пинск" in string: return True
 		elif not "свободно" in string: return True
+	else: return False
 
 
 def stringIsFulfilledStatus(string):
-	if "selected="">" in string:
+	if "selected=\"\">" in string:
 		return True
 	else: return False
 
@@ -60,7 +60,7 @@ def getFulfilledStatus(string):
 
 		
 def isGetString(string):
-	words = ["Пинск", "свободно", "д.к.", "дк", "Дк", "Д.К.", "безнал", "б/н", "17р", "ребенок", "width=\"25px\"", "selected=\"\">Поехал"]
+	words = ["Пинск", "свободно", "д.к.", "дк", "Дк", "Д.К.", "безнал", "б/н", "17р", "ребенок", "width=\"25px\"", "selected=\"\">Поехал", "<td colspan=\"5\">"]
 	for word in words:
 		if word in string: return True
 	return False
