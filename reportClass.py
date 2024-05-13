@@ -74,7 +74,7 @@ class Payment:
 		self.count = 0
 		
 	def addCount(self, value):
-		self.count =+ value
+		self.count += value
 
 	def display(self):
 		print(f"{self.name}: {self.count}")
