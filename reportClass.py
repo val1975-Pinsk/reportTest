@@ -84,6 +84,7 @@ class directReport:
 		self.fullyPrice.display()
 		self.discounted.display()
 		self.halfTheCost.display()
+		print("Итого: ",self.fullyPrice.getTotal() + self.discounted.getTotal() + self.halfTheCost.getTotal())
 		print("===============================================")
 
 	def setSubHeader(self, string):
@@ -104,4 +105,7 @@ class Payment:
 		self.count += value
 
 	def display(self):
-		print(f"{self.name}: {self.count}")
+		print(f"{self.name}: {self.count}x{self.value} {self.count*self.value}")
+		
+	def getTotal(self):
+		return self.value * self.count
