@@ -62,6 +62,6 @@ def getFulfilledStatus(string):
 def isGetString(string):
 	words = ["Пинск", "свободно", "д.к.", "дк", "Дк", "Д.К.", "безнал", "б/н", "17р", "ребенок", "width=\"25px\"", "selected=\"\">Поехал", "<td colspan=\"5\">"]
 	for word in words:
-		if word in string: return True
+		if word in string and not "</tr>" in string: return True
 	return False
 
