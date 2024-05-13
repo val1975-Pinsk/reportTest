@@ -56,6 +56,7 @@ else:
 		elif stringIsRemark(string):
 		#	Пояснения к заказу.
 			passenger.remark = getRemarkFromString(string)
+			dirReport.passengers.append(passenger)
 			
 			#print(f"Заказано мест: {passenger.recerved}\nПояснения: {passenger.remark}")
 
