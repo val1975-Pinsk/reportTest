@@ -8,18 +8,48 @@ class Passenger:
 		print(f"recerved: {self.recerved}\nfulfilled: {self.fulfilled}\nremark: {self.remark}")
 	
 	
+	def getFullyPriceCount(self):
+		count = 0
+		count += self.getDiscountedCount()
+		count += self.getHalfTheCostCount()
+		return self.recerved - count		
+	
+	def getHalfTheCostCount(self):
+		words = ["17р", "Ивацевич", "Ивацевичи", "до ивац"]
+		remark = self.remark
+		count = 0
+		for unit in words:
+			if unit in remark:
+				return self.recerved
+		return count
+		
+	def getDiscountedCount(self):
+		words = ["дк", "Д.К.", "Д к ", "Дк"]
+		remark = self.remark
+		count = 0
+		while(1):
+			for unit in words:
+				found = remark.find(unit)
+				if found < 0: return count
+				else:
+					remark = remark[found+1:]
+					count += 1
+	
 	def getPayment(self):
-		discountedWords = ["дк", "Д.К.", "Д к ", "Дк"]
+		count = 0
 		response = {
 			"discounted":0,
 			"fullyPrice":0,
 			"halfTheCost":0
 			}
 		if not self.fulfilled: return response
-		for unit in discountedWords:
-			if unit in self.remark:
-				response["discounted"] += 1
-		response["fullyPrice"] += 1
+		response["discounted"] = self.getDiscountedCount()
+		if self.recerved - response["discounted"] == 0:
+			return response
+		response["halfTheCost"] = self.getHalfTheCostCount()
+		if self.recerved - (response["discounted"]+response["halfTheCost"]) == 0:
+			return response
+		response["fullyPrice"] = self.getFullyPriceCount()
 		return response
 	
 	
@@ -37,9 +67,9 @@ class directReport:
 		self.occupied = 0
 		self.freely = 0
 		self.passengers = []
-		self.fullyPrice = Payment("fullyPrice", 35)
-		self.discounted = Payment("discounted", 30)
-		self.halfTheCost = Payment("halfTheCost", 17)
+		self.fullyPrice = Payment("Полная стоимость", 35)
+		self.discounted = Payment("По дисконту", 30)
+		self.halfTheCost = Payment("Пол стоимости", 17)
 	
 	def display(self):
 		print("\n")
@@ -47,13 +77,10 @@ class directReport:
 		print(f"Занято мест: {self.occupied}\nСвободных мест: {self.freely}\nАвтомобиль: {self.auto}")
 		print("\n")
 		for unit in self.passengers:
-			unit.display()
 			pay = unit.getPayment()
-			print("fullyPrice: ",pay["fullyPrice"])
 			self.fullyPrice.addCount(pay["fullyPrice"])
-			'''
 			self.discounted.addCount(pay["discounted"])
-			self.halfTheCost.addCount(pay["halfTheCost"])'''
+			self.halfTheCost.addCount(pay["halfTheCost"])
 		self.fullyPrice.display()
 		self.discounted.display()
 		self.halfTheCost.display()
