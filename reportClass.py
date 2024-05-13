@@ -24,9 +24,13 @@ class directReport:
 		self.halfTheCost = Payment(17)
 	
 	def display(self):
-		print(f"Направление: {self.direction}\nДата: {self.date}\nВремя отправления: {self.time}")
+		print("\n")
+		print(f"Направление:{self.direction}\nДата: {self.date}\nВремя отправления: {self.time}")
 		print(f"Занято мест: {self.occupied}\nСвободных мест: {self.freely}\nАвтомобиль: {self.auto}")
-		print("===============================================\n")
+		print("\n")
+		for passenger in self.passengers:
+			print(f"Кол-во мест: {passenger.recerved}\nСтатус: {passenger.fulfilled}\nПояснения: {passenger.remark}")
+		print("===============================================")
 
 	def setSubHeader(self, string):
 		string = string[16:len(string)-5]
