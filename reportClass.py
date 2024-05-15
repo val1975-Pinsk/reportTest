@@ -27,14 +27,17 @@ class Passenger:
 		words = ["дк", "Д.К.", "Д к ", "Дк"]
 		remark = self.remark
 		count = 0
-		while(1):
+		found = 0
+		while(found != -1):
 			for unit in words:
 				found = remark.find(unit)
-				if found < 0: return count
-				else:
-					remark = remark[found+1:]
+				if found != -1: 
 					count += 1
-	
+					remark = remark[found + 1:]
+					break
+		print("count: ",count)
+		return count
+					
 	def getPayment(self):
 		count = 0
 		response = {
