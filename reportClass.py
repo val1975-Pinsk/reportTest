@@ -35,7 +35,6 @@ class Passenger:
 					count += 1
 					remark = remark[found + 1:]
 					break
-		print("count: ",count)
 		return count
 					
 	def getPayment(self):
