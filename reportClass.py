@@ -90,7 +90,7 @@ class directReport:
 		print("===============================================")
 
 	def setSubHeader(self, string):
-		string = string[16:len(string)-5]
+		string = string[16:]
 		words = string.split(", ")
 		self.occupied = int(words[0][:len(words[0])-2])
 		self.freely = int(words[1][:len(words[0])-12])
