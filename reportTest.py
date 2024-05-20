@@ -26,10 +26,11 @@ def getReportData():
 Выбираем файлы с расширением *.txt.
 '''
 listOfFiles = os.listdir(".")
-pattern = "*.txt"
-for entry in listOfFiles:
-	if fnmatch.fnmatch(entry, pattern):
-		print(entry)
+patternList = ["*.txt", ".html"]
+for item in patternList:
+    for entry in listOfFiles:
+	    if fnmatch.fnmatch(entry, item):
+		    print(entry)
 
 reportData = getReportData()
 if reportData == "finish":
@@ -57,8 +58,5 @@ else:
 		#	Пояснения к заказу.
 			passenger.remark = getRemarkFromString(string)
 			dirReport.passengers.append(passenger)
-			
-			#print(f"Заказано мест: {passenger.recerved}\nПояснения: {passenger.remark}")
-
-for report_ in report:
+	for report_ in report:
 	report_.display()
