@@ -59,4 +59,4 @@ else:
 			passenger.remark = getRemarkFromString(string)
 			dirReport.passengers.append(passenger)
 	for report_ in report:
-	report_.display()
+		report_.display()
